@@ -1,40 +1,19 @@
-import { useContext } from 'react'
-import { Context } from './contexts/Context'
+import { useMyContext } from './contexts/ContextProvider'
 
 const Filho2 = () => {
-  const { state, dispatch } = useContext(Context)
+  const { name, setName, age, setAge } = useMyContext()
 
   return (
     <div style={{ margin: '10px', border: '1px solid white' }}>
       <h2>Filho2</h2>
 
       <p>
-        name: {state.people.name} - Escolha um novo nome:{' '}
-        <input
-          type="text"
-          onChange={e =>
-            dispatch({
-              type: 'CHANGE_NAME',
-              payload: {
-                name: e.target.value
-              }
-            })
-          }
-        />
+        name: {name} - Escolha um novo nome:
+        <input type="text" onChange={e => setName(e.target.value)} />
       </p>
       <p>
-        idade: {state.people.age} - Escolha uma nova idade:
-        <input
-          type="number"
-          onChange={e =>
-            dispatch({
-              type: 'CHANGE_AGE',
-              payload: {
-                age: e.target.value
-              }
-            })
-          }
-        />
+        idade: {age} - Escolha uma nova idade:
+        <input type="number" onChange={e => setAge(Number(e.target.value))} />
       </p>
     </div>
   )

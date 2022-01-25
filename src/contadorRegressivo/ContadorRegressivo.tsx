@@ -5,12 +5,14 @@ const ContagemRegressiva = () => {
   const [activeTimer, setActiveTimer] = useState<boolean>(false)
 
   useEffect(() => {
-    if (activeTimer && timer > 0) {
-      const regressiveCount = setInterval(() => {
-        if (timer > 0) setTimer(prev => prev - 1)
-      }, 1000)
-      return () => clearInterval(regressiveCount)
+    if (!activeTimer || timer < 0) {
+      return
     }
+
+    const regressiveCount = setInterval(() => {
+      if (timer > 0) setTimer(prev => prev - 1)
+    }, 1000)
+    return () => clearInterval(regressiveCount)
   }, [activeTimer, timer])
 
   const handleStartTimer = () => {
@@ -21,6 +23,7 @@ const ContagemRegressiva = () => {
     <div>
       <button onClick={handleStartTimer}>Iniciar temporizador</button>
       <p>{timer}</p>
+      <button onClick={() => setTimer(5)}>Resetar o temporizador</button>
     </div>
   )
 }

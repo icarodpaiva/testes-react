@@ -1,11 +1,11 @@
 import Filho1 from './Filho1'
 import Filho2 from './Filho2'
 
-import ContextProvider from './contexts/ContextProvider'
+import { ContextProvider } from './contexts/Context'
 
-const Pai2 = () => {
+const Pai = () => {
   return (
-    <div style={{ backgroundColor: '#111' }}>
+    <div style={{ backgroundColor: '#666' }}>
       <h2>Componente pai</h2>
       <ContextProvider>
         <Filho1 />
@@ -15,4 +15,4 @@ const Pai2 = () => {
   )
 }
 
-export default Pai2
+export default Pai
